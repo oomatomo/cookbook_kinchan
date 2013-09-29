@@ -9,3 +9,4 @@ version          '0.1.0'
 depends "mysql", "~> 3.0.0"
 depends "nginx", "~> 1.8.0"
 depends "php", "~> 1.2.4"
+depends "git", "~> 2.6.0"

@@ -1,0 +1,9 @@
+server {
+  listen   8080;
+  server_name  <%= node['hostname'] %>;
+  access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
+  location / {
+    root   <%= node['kinchan']['path'] %>/<%= node['kinchan']['dir'] %>;
+    index  index.html index.htm;
+  }
+}
