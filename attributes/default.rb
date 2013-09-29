@@ -1,3 +1,2 @@
 
-default['kinchan']['path'] = "/var/www"
-default['kinchan']['dir'] = "kif"
+default['kinchan']['path'] = "/var/www/kif"

@@ -11,21 +11,24 @@ include_recipe 'nginx'
 include_recipe 'php'
 include_recipe 'git'
 
-# setting nginx
-begin
-  template "#{node['nginx']['dir']}/sites-available/default" do
-    source "default-site.erb"
-  end
-rescue Chef::Exceptions::ResourceNotFound
-  Chef::Log.warn "could not find template your template override!"
+# git clone app's code
+git "#{node['kinchan']['path']}" do
+  repository 'https://github.com/oomatomo/kif.git'
+  action :checkout
 end
 
-# git clone app's code
-begin
-  git "#{node['kinchan']['path']}" do
-    repository "https://github.com/oomatomo/kif.git"
-    action :sync
-  end
-rescue Chef::Exceptions::ResourceNotFound
-  Chef::Log.warn "could not clone app' conde!"
+# setting nginx
+nginx_site 'default' do
+  enable false
+end
+file "/etc/nginx/conf.d/default.conf" do
+  action :delete
+end
+template "#{node['nginx']['dir']}/sites-enabled/default" do
+  source 'default-site.erb'
+  notifies :restart, 'service[nginx]'
+end
+
+service "iptables" do
+  action :stop
 end
