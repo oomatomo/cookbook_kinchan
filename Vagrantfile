@@ -12,18 +12,6 @@ Vagrant.configure("2") do |config|
   config.berkshelf.enabled = true
 
   config.vm.provision :chef_solo do |chef|
-    chef.json = {
-      mysql: {
-        server_root_password: 'rootpass',
-        server_debian_password: 'debpass',
-        server_repl_password: 'replpass',
-        bind_address: "127.0.0.1"
-      },
-      nginx: {
-        post:80
-      }
-    }
-
     chef.run_list = [
       "recipe[cookbook_kinchan::default]"
     ]
