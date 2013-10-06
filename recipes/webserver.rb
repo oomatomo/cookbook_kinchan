@@ -1,6 +1,9 @@
 # setting php-fpm
-package 'php-fpm' do
+packages = %w{ php-fpm php-mysql }
+packages.each do |pkg|
+  package pkg do
     action [:install, :upgrade]
+  end
 end
 
 file "/etc/php-fpm.d/www.conf" do
