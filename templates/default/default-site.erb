@@ -1,8 +1,13 @@
 server {
   listen   80;
   access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
-  location / {
-    root   <%= node['kinchan']['path'] %>;
-    index  index.html index.htm;
+  root   <%= node['kinchan']['path'] %>;
+
+  location ~* \.php$ {
+    fastcgi_pass  <%= node['php-fpm']['host'] %>;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param PATH_INFO $fastcgi_script_name;
+    include     fastcgi_params;
   }
 }

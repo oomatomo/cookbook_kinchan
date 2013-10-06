@@ -11,4 +11,7 @@ default['mysql']['server_debian_password'] = 'debpass'
 default['mysql']['server_repl_password'] = 'replpass'
 default['mysql']['bind_address'] = default['kinchan']['database']['host']
 
+default['php-fpm']['host'] = '127.0.0.1:9000'
+default['php-fpm']['user'] = 'nginx'
+default['php-fpm']['group'] = 'nginx'
 

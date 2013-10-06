@@ -42,4 +42,8 @@ CREATE TABLE IF NOT EXISTS `Kin` (
   `point` int(2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `Category` VALUES ( 1, 'test_user' );
+INSERT INTO `Category`
+SELECT * FROM (SELECT 1, 'TEST') AS tmp
+WHERE NOT EXISTS (
+    SELECT content FROM Category WHERE content = 'TEST'
+) LIMIT 1;

@@ -7,15 +7,15 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# about webserver.rb
-include_recipe 'nginx'
-include_recipe 'php'
-include_recipe 'git'
-
 # about database.rb
 include_recipe 'mysql::ruby'
 include_recipe 'mysql::server'
 include_recipe 'database::mysql'
+
+# about webserver.rb
+include_recipe 'nginx'
+include_recipe 'php'
+include_recipe 'git'
 
 # git clone app's code
 git "#{node['kinchan']['path']}" do

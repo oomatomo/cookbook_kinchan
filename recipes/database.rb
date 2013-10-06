@@ -1,9 +1,6 @@
 
 # setting database
 
-include_recipe 'mysql::ruby'
-include_recipe 'mysql::server'
-include_recipe 'database::mysql'
 # create mysql
 mysql_connection_info = {
   :host => node['kinchan']['database']['host'],
