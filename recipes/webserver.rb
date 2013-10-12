@@ -15,6 +15,11 @@ template "/etc/php-fpm.d/www.conf" do
   source "php-fpm-www.conf.erb"
 end
 
+template "/var/lib/php/session" do
+  group "nginx"
+  source "php-fpm-www.conf.erb"
+end
+
 service 'php-fpm' do
   action :start
 end
